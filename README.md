@@ -1,12 +1,10 @@
 #### **Reviewer TBVF**
 
 **Rebuttal Response:**  
- 
 
-Please find below our responses to the specific comments you made:-
+Thank you for your thorough review of our submission and for recognizing the improvements made in response to the previous feedback. Please find below our responses to the specific comments you made:-
 
 Limited novelty. Most components are combinations of existing methods.
-
 **Response:**   
 While our framework builds on ideas like dynamic in-context learning and PoT prompting, the novelty lies in the **specific refinements and task-adapted enhancements** we introduce in each module to push performance beyond standard approaches.
 
@@ -27,7 +25,6 @@ These refinements are not just integration—they are purposeful, task-driven mo
 In summary, our contribution lies in the design and empirical validation of these targeted enhancements, rather than reusing standard components without adaptation.
 
 Unfair experimental comparison. FINDER is based on GPT-4. I would like to see more baselines with GPT-4.
-
 **Response**  
 
 Thank you for your comment. We agree that GPT-4 is a very strong model; however, as shown in Table-2, simply using GPT-4 alone or with existing prompting methods like POT, COT, or TabT5 does **not** surpass the task-specific SOTA model APOLLO. Our method outperforms these GPT-4 baselines by combining GPT-4 with relevant retrieved facts and dynamic in-context examples.
@@ -43,7 +40,9 @@ These results highlight that the improvement is not from GPT-4 alone, but from o
 #### 
 
 #### **Reviewer ohhs**
+Thank you for carefully reviewing our submission and highlighting the strengths and novelty of our paper.  Please find below our responses to the specific comments you made:-
 
+Figure 3 doesn't add much to the paper as it is unclear what the concepts the clusters represent and how that subset was selected for visualization. Were the most well defined clusters selected or were they randomly chosen?
 **Response:**
 
 Thank you for the feedback. We agree that the purpose of Figure 3 can be made clearer. The t-SNE plot is intended to provide an intuitive visualization of the semantic distribution of few clusters formed using Sentence-BERT embeddings. Due to space constraint, we selected a subset of clusters—such as those related to growth rates, amortization, and ROI—to demonstrate that our clustering captures distinct financial reasoning concepts.
@@ -53,7 +52,6 @@ This is further supported in Table 1, where we present representative questions 
 In the final version, we will improve the caption and narrative around Figure 3 to better communicate the rationale behind the selected clusters and their interpretability.
 
 Although the paper is framed as addressing issues in finance and the dataset and examples were financial in nature, it doesn't seem to me that there was anything about the FINDER framework that is specific to finance. The approach looks generally applicable to numerical reasoning tasks across domains (which is good), so the exclusive focus on financial datasets doesn't feel as well motivated.
-
 **Response** 
 
 Thank you for the insightful comment. You are correct that the FINDER framework itself is not inherently limited to finance and is generally applicable to numerical reasoning tasks across domains.
@@ -69,7 +67,9 @@ Thank you for pointing this out. We will correct “LLM's” to “LLMs” in Li
 #### **—--------------------------------------------------------------------------------------------**
 
 #### **Reviewer 8jar**
+Thank you for reviewing our submission and recognizing the innovative design of our method, as well as its significant improvements across multiple datasets compared to various baselines. Below, we provide our detailed responses to your comments.
 
+The clustering section mentions the use of Sentence BERT and agglomerative clustering methods for clustering the problems and selecting representative problems for each cluster. However, specific descriptions of the details of the clustering techniques, parameter selection, and how to determine the number of clusters (e.g., 50 clusters) are still sketchy, and the logic and empirical rationale behind these settings are not fully described.
 **Response:**
 Thank you for the valuable feedback. We acknowledge that the current version lacks detailed justification for our clustering setup. As mentioned in lines 263–264, we initially compared Sentence-BERT embeddings with TF-IDF and observed that TF-IDF did not yield good clustering results. To further validate this choice, we have now additionally experimented with other sentence embedding models, including Universal Sentence Encoder and MPNet. The silhouette scores for these variants are shown in Table below. Sentence-BERT continues to outperform these alternatives, supporting its use. We will include these additional results and details in the final version for clarity.
 
@@ -84,25 +84,19 @@ For clustering, we used agglomerative clustering with average linkage, and selec
 The majority of distinct financial concepts—such as growth rates, amortization, percentage change, ROI, etc.—could be meaningfully grouped within this number. In the final version, we will include these details, along with the clustering parameters and evaluation process.
 
 Some of the formulas in sections 3.2.2 and 3.3.1 are not ordinalized and lack formula numbers.
-
 **Response:**
-
 Thank you for pointing that out. In Section 3.2.2, the expression Si=IP ∣∣ TabTexti ∣∣ Di ∣∣ Qi was intended as a structural input format illustration rather than a formal equation. In the final version, we will format them as inline text to avoid confusion.
 
 For Section 3.3.1, we acknowledge the missing equation number for reward computation and will revise the final version to properly number and format all formulas for consistency and clarity.
 
 Although the authors mention that 50 clusters were selected, there is no further elaboration on the basis for the selection of this number. There should be further explanation of how the number of clusters was determined and whether some method was used to validate the reasonableness of this number, such as assessing the quality of the clusters through metrics such as Silhouette Score, or an empirical choice based on the distribution of the data.
-
 **Response**  
-
 Thank you for the insightful comment. We agree that further clarification on the selection of the number of clusters would strengthen the section. As noted in Lines 261–263, we did mention that Sentence-BERT yielded the best clusters based on higher Silhouette Scores. 
 
 However, we acknowledge that we did not explicitly explain how the number of clusters (50) was chosen. Actually, we evaluated cluster quality across a range of values (30 to 70\) using the Silhouette Score and found that 50 provided the best balance between semantic cohesion and diversity. Additionally, we empirically observed that the key financial concepts in our dataset—such as growth rates, amortization, percentage change, ROI, etc.—could be well captured within 50 clusters. We will include these details in the final version for greater clarity and justification.
 
 Errors are categorized in the appendix (fact retrieval errors, ground truth or question issues, and logical errors), but the root causes of each type of error are not analyzed in depth. The authors could consider further refining the error analysis to explore the specific scenarios in which different types of errors occur and propose targeted improvement measures.
-
 **Response**  
-
 Thank you for the helpful feedback. While we categorized errors and included representative examples in Appendix A.1, we acknowledge that the root causes for each error type were not explicitly analyzed or structured in the current version of the paper. We mentioned some high-level contributing factors—such as flawed reasoning and incorrect computations—and briefly suggested mitigation strategies (Lines 904–907), including improvements to program generation, dataset annotation, and the use of domain-specific knowledge.
 
 To clarify further:
